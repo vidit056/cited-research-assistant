@@ -1,0 +1,11 @@
+Layer / Component,Technology / Parameter,Current Value / Configuration,Role & Purpose in v1 MVP
+Primary LLM Reasoning,Google Vertex AI (gemini-3.7-flash),MODEL_PLAN / MODEL_RETRIEVE / MODEL_SYNTH / MODEL_VERIFY,"Handles sub-question planning, grounded report writing, and citation/contradiction checking."
+Vector Embeddings Model,Google Vertex AI (text-embedding-004),768-dimensional float vectors,Converts scraped document chunks and sub-question queries into semantic dense vectors.
+Vector Database,Chroma DB,.data/chroma (Local persistent storage),Indexes document chunks per research session and performs cosine similarity search.
+Persistent Database,SQLite (SQLAlchemy ORM),.data/app.db (PostgreSQL ready via DATABASE_URL),"Persists research runs, source URLs, citation character spans, and eval benchmark scores."
+Search Cache Key,Query/URL Fingerprint in SQLite,Cache table in app.db,Caches Tavily search responses and trafilatura extractions to save API quota & ensure reproducibility.
+Web Search Provider,Tavily Search API,TAVILY_API_KEY (.env),Executes live web searches and returns ranked results and snippets.
+Web Scraper,trafilatura + httpx,trafilatura v2.2.0 (Timeout: 12s),Downloads web pages and strips boilerplate/ads to extract clean readable text.
+Citation Verification,rapidfuzz Partial Ratio,CITATION_MATCH_THRESHOLD = 85.0,Locates verbatim quoted claims in raw source text; marks as unverified if match fails.
+Backend API,FastAPI + Uvicorn,Port 8000 (Swagger docs at /docs),Provides REST API endpoints for submitting research queries and fetching run history.
+Frontend User Interface,Streamlit,Port 8501 (ui/streamlit_app.py),"Provides interactive dashboard with 4-step progress, cited report, and conflict alerts."

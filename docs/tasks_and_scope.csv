@@ -1,0 +1,17 @@
+Task / Feature,Category,Version,Status,Implementation Details / Files
+Environment & Model Knobs,Core Config,v1 MVP,Completed,".env.example, .env, app/config.py with per-step model knobs (all default to gemini-3.7-flash)"
+Evaluation Benchmark Dataset,Evaluation,v1 MVP,Completed,eval/test_dataset.json (15 benchmark questions with ground truth & must-cite topics)
+Database Schema & Persistence,Database,v1 MVP,Completed,"db/models.py, db/session.py, db/repositories.py (SQLite/Postgres: runs, sources, citations, eval_scores)"
+Search Cache Key Mechanism,Caching,v1 MVP,Completed,db/repositories.py compute_cache_key() (Query/URL fingerprinting to save API credits & ensure reproducibility)
+Web Search & Scraping Tools,Tools,v1 MVP,Completed,tools/web_search.py (Tavily API) and tools/scraper.py (trafilatura clean text extractor)
+Document Chunking & Provenance,RAG Core,v1 MVP,Completed,"rag/ingest.py (Sentence-boundary chunking ~800 chars, 150 overlap with source metadata)"
+Vertex AI Semantic Embeddings,RAG Core,v1 MVP,Completed,rag/embeddings.py (Google Vertex AI text-embedding-004 768-dim vector embeddings)
+Chroma Vector Store,RAG Core,v1 MVP,Completed,rag/vectorstore.py (Local Chroma DB collection indexing & cosine similarity retrieval)
+4-Step Agent Loop & Prompts,Agent Loop,v1 MVP,Completed,"agent/prompts.py, agent/nodes.py, agent/loop.py (Plan -> Retrieve -> Synthesize -> Verify)"
+Fuzzy Citation Span Verification,Verification,v1 MVP,Completed,agent/nodes.py locate_quote_in_text() (Exact match + rapidfuzz with unverified fallback)
+FastAPI REST API Service,Backend,v1 MVP,Completed,"app/main.py, app/routes/research.py (REST endpoints: /api/research submit & fetch, /health, Swagger docs)"
+Streamlit Web Interface,Frontend UI,v1 MVP,Completed,"ui/streamlit_app.py (4-step progress visualizer, cited Markdown viewer, sources explorer, conflict alerts)"
+Evaluation Scorer & Benchmarking,Evaluation,v1 MVP,Completed,"eval/run_eval.py (Measures Faithfulness, Citation Accuracy, and Retrieval Relevance against benchmark)"
+Cross-Encoder Re-Ranking,RAG Advanced,v2 Roadmap,Deferred,FlashRank re-ranking candidate pool to improve Top-K precision
+Hybrid Search (Dense + BM25),RAG Advanced,v2 Roadmap,Deferred,Combining sparse lexical matching with dense vector retrieval using RRF
+Async Worker Queues & SSE Streaming,Architecture,v3 Roadmap,Deferred,Celery/Redis background worker queue with real-time Server-Sent Events

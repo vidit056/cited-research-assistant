@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cited Research Assistant — Project Status Report</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --surface: #ffffff;
+            --background: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--background);
+            margin: 0;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            background: var(--surface);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border);
+        }
+
+        header {
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            color: var(--primary-dark);
+            margin: 0 0 0.5rem 0;
+            font-size: 2.2rem;
+            font-weight: 800;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1.2rem;
+            padding: 1rem;
+            background-color: #f1f5f9;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .meta-item strong {
+            color: var(--text-main);
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        h2 {
+            color: #1e293b;
+            font-size: 1.4rem;
+            border-bottom: 2px solid #cbd5e1;
+            padding-bottom: 0.4rem;
+            margin-top: 2.5rem;
+        }
+
+        h3 {
+            color: #334155;
+            font-size: 1.15rem;
+            margin-top: 1.5rem;
+        }
+
+        p, li {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            border-radius: 9999px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-success {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-info {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.92rem;
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+
+        th {
+            background-color: #f8fafc;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        pre {
+            background-color: #0f172a;
+            color: #f8fafc;
+            padding: 1.2rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.88rem;
+            line-height: 1.45;
+        }
+
+        code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            background-color: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            color: #0f172a;
+            font-size: 0.88em;
+        }
+
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+
+        .diagram-box {
+            background-color: #f8fafc;
+            border: 1px dashed #94a3b8;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .step-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+        }
+
+        .step-card h4 {
+            margin: 0 0 0.5rem 0;
+            color: var(--primary);
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🔬 Cited Research Assistant</h1>
+        <p style="margin: 0; font-size: 1.1rem; color: var(--text-muted);">Technical Status & Engineering Report</p>
+        
+        <div class="meta-grid">
+            <div class="meta-item">
+                <strong>Author</strong>
+                Vidit Jain
+            </div>
+            <div class="meta-item">
+                <strong>Document Version</strong>
+                v1.0 (v1 MVP Complete)
+            </div>
+            <div class="meta-item">
+                <strong>LLM Engine</strong>
+                Vertex AI (Gemini 3.7 Flash)
+            </div>
+            <div class="meta-item">
+                <strong>Status</strong>
+                <span class="badge badge-success">Operational & Tested</span>
+            </div>
+        </div>
+    </header>
+
+    <h2>1. Executive Summary</h2>
+    <p>
+        The <strong>Cited Research Assistant</strong> is an agentic Retrieval-Augmented Generation (RAG) system engineered to transform complex natural-language research questions into <strong>verifiable, cited Markdown reports</strong>.
+    </p>
+    <p>
+        Unlike general-purpose chatbots that produce ungrounded generations without citations, this system makes the entire research process transparent, inspectable, and verifiable. It decomposes queries, gathers live web evidence via Tavily, chunks and indexes content with Google Vertex AI embeddings, synthesizes cited text, and runs an adversarial verification pass to locate exact character spans in raw source text while surfacing cross-source contradictions.
+    </p>
+
+    <h2>2. Architecture & Data Flow</h2>
+    <div class="step-grid">
+        <div class="step-card">
+            <h4>1. Plan Node</h4>
+            <p>Decomposes 1 broad research query into 3–5 targeted sub-questions using <code>gemini-3.7-flash</code>.</p>
+        </div>
+        <div class="step-card">
+            <h4>2. Retrieve & RAG</h4>
+            <p>Queries Tavily, extracts clean text via <code>trafilatura</code>, chunks text, and indexes in local Chroma DB with <code>text-embedding-004</code>.</p>
+        </div>
+        <div class="step-card">
+            <h4>3. Synthesize</h4>
+            <p>Generates structured Markdown report with inline <code>[n]</code> bracket citations grounded strictly on retrieved excerpts.</p>
+        </div>
+        <div class="step-card">
+            <h4>4. Verify & Conflicts</h4>
+            <p>Verifies quotes using <code>rapidfuzz</code> fuzzy span matching, flags unverified claims, and detects contradictions.</p>
+        </div>
+    </div>
+
+    <h2>3. Inventory of Completed Work (Current State)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Component</th>
+                <th>Technology / Files</th>
+                <th>Status</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Core Config & Model Knobs</strong></td>
+                <td><code>app/config.py</code>, <code>.env</code></td>
+                <td><span class="badge badge-success">Completed</span></td>
+                <td>Modular model knobs for all 4 steps defaulting to <code>gemini-3.7-flash</code> via Vertex AI.</td>
+            </tr>
+            <tr>
+                <td><strong>Benchmark Dataset</strong></td>
+                <td><code>eval/test_dataset.json</code></td>
+                <td><span class="badge badge-success">Completed</span></td>
+                <td>15 domain-specific benchmark questions with ground truth and required citation topics.</td>
+            </tr>
+            <tr>
+                <td><strong>Database Persistence</strong></td>
+                <td><code>db/models.py</code>, <code>db/session.py</code></td>
+                <td><span class="badge badge-success">Completed</span></td>
+                <td>SQLite/PostgreSQL schema storing runs, sources, citations, eval scores, and cache.</td>
+            </tr>
+            <tr>
+                <td><strong>Search Cache Key</strong></td>
+                <td><code>db/repositories.py</code></td>
+                <td><span class="badge badge-success">Completed</span></td>
+                <td>Query/URL fingerprint caching to save Tavily credits and ensure reproducible evaluations.</td>
+            </tr>
+            <tr>
+                <td><strong>Web Search & Extraction</strong></td>
+                <td><code>tools/web_search.py</code>, <code>tools/scraper.py</code></td>
+                <td><span class="badge badge-success">Completed</span></td>
+                <td>Tavily Search client and <code>trafilatura</code> clean text extractor.</td>
+            </tr>
+            <tr>
+                <td><strong>RAG & Vector Storage</strong></td>
+                <td><code>rag/embeddings.py</code>, <code>rag/vectorstore.py</code></td>
+                <td><span class="badge badge-success">Completed</span></td>
+                <td>Vertex <code>text-embedding-004</code> (768-dim) and local Chroma DB vector collections.</td>
+            </tr>
+            <tr>
+                <td><strong>4-Step Agent Loop</strong></td>
+                <td><code>agent/nodes.py</code>, <code>agent/loop.py</code></td>
+                <td><span class="badge badge-success">Completed</span></td>
+                <td>Plan, Retrieve, Synthesize, and Verify nodes orchestrated in a hand-rolled loop.</td>
+            </tr>
+            <tr>
+                <td><strong>Fuzzy Span Matching</strong></td>
+                <td><code>rapidfuzz</code> in <code>agent/nodes.py</code></td>
+                <td><span class="badge badge-success">Completed</span></td>
+                <td>Locates verbatim claim quotes in raw source text; marks as unverified if missing.</td>
+            </tr>
+            <tr>
+                <td><strong>FastAPI REST Service</strong></td>
+                <td><code>app/main.py</code>, <code>app/routes/</code></td>
+                <td><span class="badge badge-success">Completed</span></td>
+                <td>REST endpoints (<code>/api/research</code>, <code>/health</code>) and interactive Swagger docs.</td>
+            </tr>
+            <tr>
+                <td><strong>Streamlit Web UI</strong></td>
+                <td><code>ui/streamlit_app.py</code></td>
+                <td><span class="badge badge-success">Completed</span></td>
+                <td>Interactive dashboard with 4-step progress, cited report, source viewer, and conflicts.</td>
+            </tr>
+            <tr>
+                <td><strong>Evaluation Harness</strong></td>
+                <td><code>eval/run_eval.py</code></td>
+                <td><span class="badge badge-success">Completed</span></td>
+                <td>Scores Faithfulness, Citation Accuracy, and Retrieval Relevance against benchmark.</td>
+            </tr>
+            <tr>
+                <td><strong>Automated Test Suite</strong></td>
+                <td><code>tests/test_pipeline.py</code></td>
+                <td><span class="badge badge-success">Completed</span></td>
+                <td>6 unit & integration tests (100% passing).</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>4. Issues Encountered & Resolution Log</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Issue ID</th>
+                <th>Component</th>
+                <th>Symptom</th>
+                <th>Root Cause Analysis</th>
+                <th>Fix Applied</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>ISS-01</strong></td>
+                <td>Python Venv</td>
+                <td><code>python3 -m venv</code> failed</td>
+                <td>Linux Python 3.14 on WSL lacked <code>python3-venv</code> package.</td>
+                <td>Created venv with <code>--without-pip</code> and bootstrapped pip via <code>get-pip.py</code>.</td>
+            </tr>
+            <tr>
+                <td><strong>ISS-02</strong></td>
+                <td>Test Suite</td>
+                <td><code>ModuleNotFoundError: No module named 'app'</code></td>
+                <td>Pytest invoked without workspace root in Python's <code>sys.path</code>.</td>
+                <td>Added <code>tests/conftest.py</code> inserting project root into <code>sys.path</code>.</td>
+            </tr>
+            <tr>
+                <td><strong>ISS-03</strong></td>
+                <td>Streamlit UI</td>
+                <td>Terminal paused at <code>Email: |</code></td>
+                <td>Streamlit prompts for newsletter registration on fresh installs in non-headless mode.</td>
+                <td>Skipped prompt with Enter and documented <code>--server.headless true</code>.</td>
+            </tr>
+            <tr>
+                <td><strong>ISS-04</strong></td>
+                <td>Browser / Network</td>
+                <td><code>ERR_SSL_PROTOCOL_ERROR</code></td>
+                <td>Chrome automatically redirected localhost to <code>https://</code> instead of <code>http://</code>.</td>
+                <td>Accessed via explicit <code>http://localhost:8501</code> or <code>http://127.0.0.1:8501</code>.</td>
+            </tr>
+            <tr>
+                <td><strong>ISS-05</strong></td>
+                <td>Database / UI</td>
+                <td><code>DetachedInstanceError: Instance &lt;Run&gt; is not bound</code></td>
+                <td>SQLAlchemy expired ORM objects on <code>session.close()</code>, breaking sidebar buttons.</td>
+                <td>Configured <code>expire_on_commit=False</code> and extracted dictionary values in session.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>5. Future Roadmap</h2>
+    <ul>
+        <li><strong>Phase 2 (v2 — Trust & Quality):</strong> Cross-Encoder Re-Ranking (<code>FlashRank</code>), Hybrid Search (Dense + BM25), PDF Document Ingestion, Langfuse Tracing.</li>
+        <li><strong>Phase 3 (v3 — Product & Scale):</strong> Asynchronous Worker Queues (Celery/Redis), Real-Time SSE Token Streaming, PDF/Word Report Exporting.</li>
+        <li><strong>Phase 4 (v4 — Deployment):</strong> Docker & Docker Compose containerization, PostgreSQL with <code>pgvector</code> migration.</li>
+    </ul>
+
+    <h2>6. Quickstart Commands</h2>
+    <pre><code># 1. Start Streamlit UI
+.venv/bin/streamlit run ui/streamlit_app.py --server.headless true --server.port 8501
+
+# 2. Start FastAPI REST Server
+.venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+# 3. Run Benchmark Evaluation
+PYTHONPATH=. .venv/bin/python3 eval/run_eval.py --limit 3
+
+# 4. Run Unit Tests
+PYTHONPATH=. .venv/bin/pytest -v</code></pre>
+</div>
+
+</body>
+</html>

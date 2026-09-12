@@ -1,0 +1,92 @@
+[
+  {
+    "id": "q01",
+    "question": "Compare FastAPI vs Django for building AI and LLM service backends.",
+    "ground_truth": "FastAPI is asynchronous by design, lightweight, and uses Pydantic for fast data validation, making it ideal for streaming LLM tokens and microservices. Django is a full-featured framework with an ORM, auth, and admin interface, best suited for monolithic web apps with heavy relational data needs.",
+    "must_cite_topics": ["asynchronous support", "Pydantic validation", "ORM and admin ecosystem"]
+  },
+  {
+    "id": "q02",
+    "question": "How does LoRA (Low-Rank Adaptation) reduce fine-tuning memory and compute costs for Large Language Models?",
+    "ground_truth": "LoRA freezes the pre-trained model weights and injects trainable rank decomposition matrices into the transformer layers. This drastically reduces the number of trainable parameters and optimizer state memory without modifying the original weights.",
+    "must_cite_topics": ["rank decomposition matrices", "freezing base weights", "optimizer memory reduction"]
+  },
+  {
+    "id": "q03",
+    "question": "What is the difference between HNSW and IVF-PQ indexing methods in vector databases?",
+    "ground_truth": "HNSW (Hierarchical Navigable Small World) builds a multi-layer graph structure providing high recall and fast query latency at the expense of higher RAM usage. IVF-PQ (Inverted File with Product Quantization) compresses vectors into clusters and quantized codes, lowering memory footprint but slightly reducing recall.",
+    "must_cite_topics": ["graph navigation vs cluster partitioning", "memory consumption", "recall vs latency tradeoff"]
+  },
+  {
+    "id": "q04",
+    "question": "Explain FlashAttention and how it speeds up transformer self-attention computations.",
+    "ground_truth": "FlashAttention is an exact attention algorithm that reorganizes GPU memory IO using tiling. By computing attention block by block in fast GPU SRAM and avoiding reading/writing huge intermediate N-by-N attention matrices to high-bandwidth memory (HBM), it achieves significant speedups and lower memory footprint.",
+    "must_cite_topics": ["GPU SRAM vs HBM memory hierarchy", "tiling algorithm", "avoiding intermediate attention matrix storage"]
+  },
+  {
+    "id": "q05",
+    "question": "Compare Retrieval-Augmented Generation (RAG) with Long-Context LLMs for knowledge retrieval.",
+    "ground_truth": "RAG retrieves specific relevant documents dynamically from an external knowledge base, reducing token costs and hallucination risks while supporting real-time data updates. Long-Context LLMs can ingest entire documents directly in prompt context, preserving document-level coherence but incurring higher latency and token cost per query.",
+    "must_cite_topics": ["token cost and latency", "dynamic real-time knowledge updates", "lost-in-the-middle context degradation"]
+  },
+  {
+    "id": "q06",
+    "question": "What are the core differences between AWQ and GPTQ weight quantization methods for LLMs?",
+    "ground_truth": "GPTQ performs layer-by-layer second-order error compensation using the Hessian matrix to quantize all weights uniformly. AWQ (Activation-aware Weight Quantization) identifies that not all weights are equally important and protects salient weight channels based on activation magnitudes, yielding higher reasoning accuracy at low bitwidths.",
+    "must_cite_topics": ["activation-aware saliency protection", "Hessian-based second-order error minimization", "accuracy at 4-bit quantization"]
+  },
+  {
+    "id": "q07",
+    "question": "How does the Raft consensus algorithm handle leader election and log replication?",
+    "ground_truth": "Raft decomposes consensus into leader election and log replication. Nodes use randomized election timers to prevent split votes, elect a candidate with a majority vote, and the elected leader accepts client entries to append and replicate to follower logs before committing them upon majority acknowledgement.",
+    "must_cite_topics": ["randomized election timeouts", "majority quorum", "log entry consistency check"]
+  },
+  {
+    "id": "q08",
+    "question": "What architectural improvements were introduced in Pydantic V2 compared to V1?",
+    "ground_truth": "Pydantic V2 rewrote its core validation and serialization logic in Rust (pydantic-core), resulting in 5x to 50x performance gains. It also separated validation from serialization, introduced strict/lax mode switches, and redesigned model configuration.",
+    "must_cite_topics": ["Rust core rewrite (pydantic-core)", "performance improvements", "separation of validation and serialization"]
+  },
+  {
+    "id": "q09",
+    "question": "Compare gRPC and REST APIs for microservices communication in high-throughput systems.",
+    "ground_truth": "gRPC uses HTTP/2, binary Protocol Buffers serialization, and multiplexed bidirectional streaming for low-latency, strongly-typed internal RPCs. REST typically relies on JSON over HTTP/1.1 or HTTP/2, offering better public web interoperability and human-readable debugging at the cost of higher payload size and serialization overhead.",
+    "must_cite_topics": ["Protocol Buffers vs JSON serialization", "HTTP/2 multiplexing vs HTTP/1.1", "streaming capabilities"]
+  },
+  {
+    "id": "q10",
+    "question": "What are the advantages and tradeoffs of using Cross-Encoder re-ranking in a RAG pipeline?",
+    "ground_truth": "Cross-encoders jointly evaluate query-document pairs with full cross-attention, capturing deeper semantic relevance than bi-encoders and significantly improving Top-K precision. However, they are computationally more expensive and add inference latency, making them suitable only for re-ranking the top candidate pool (e.g. 20-50 chunks).",
+    "must_cite_topics": ["joint cross-attention mechanism", "precision improvement over bi-encoders", "computational latency overhead"]
+  },
+  {
+    "id": "q11",
+    "question": "Explain speculative decoding and how it accelerates LLM token generation.",
+    "ground_truth": "Speculative decoding uses a smaller, fast draft model to generate multiple candidate tokens in parallel, which are then verified simultaneously in a single forward pass by the larger target model. This reduces total latency while preserving the exact probability distribution of the target model.",
+    "must_cite_topics": ["draft model candidate generation", "single forward pass parallel verification", "preservation of output distribution"]
+  },
+  {
+    "id": "q12",
+    "question": "How does OpenTelemetry standardize tracing, metrics, and logs in distributed AI systems?",
+    "ground_truth": "OpenTelemetry provides vendor-agnostic APIs, SDKs, and the OTLP protocol to instrument applications and collect traces, metrics, and logs. It enables tracking multi-step agent decisions, LLM latency, token usage, and service dependencies in a unified format compatible with backends like Jaeger and Prometheus.",
+    "must_cite_topics": ["vendor-agnostic OTLP protocol", "trace context propagation", "unified telemetry signals (traces, metrics, logs)"]
+  },
+  {
+    "id": "q13",
+    "question": "Compare SQLite and PostgreSQL for backend persistence in AI agents and RAG applications.",
+    "ground_truth": "SQLite is a zero-configuration, serverless, file-based database ideal for local development, embedded execution, and single-tenant storage. PostgreSQL is a robust client-server relational database offering advanced concurrency, pgvector extension for native vector search, JSONB indexing, and scalable multi-user production deployments.",
+    "must_cite_topics": ["serverless embedded file vs client-server architecture", "concurrency and connection pooling", "pgvector extension"]
+  },
+  {
+    "id": "q14",
+    "question": "What is Direct Preference Optimization (DPO) and how does it compare to RLHF?",
+    "ground_truth": "DPO aligns language models directly on human preference pairs (chosen vs rejected) using an implicit reward formulation and binary cross-entropy loss, bypassing the need to train an explicit reward model or use reinforcement learning algorithms like PPO, which makes training simpler and more stable.",
+    "must_cite_topics": ["implicit reward formulation", "elimination of separate reward model and PPO", "direct optimization on preference pairs"]
+  },
+  {
+    "id": "q15",
+    "question": "What is the purpose of hybrid search (combining BM25 keyword search and dense vector search) in RAG?",
+    "ground_truth": "Hybrid search combines sparse lexical search (BM25) with dense vector search to capture both exact keyword matches (e.g. specific IDs, error codes, product names) and semantic conceptual similarity. Results are typically fused using Reciprocal Rank Fusion (RRF) to provide higher overall retrieval recall.",
+    "must_cite_topics": ["sparse lexical search (BM25) for exact terms", "dense semantic embeddings for concepts", "Reciprocal Rank Fusion (RRF)"]
+  }
+]

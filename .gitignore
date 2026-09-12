@@ -1,0 +1,26 @@
+# Environment & Secrets (NEVER COMMIT)
+.env
+.env.local
+*.pem
+*.key
+
+# Python Virtual Environment
+.venv/
+env/
+venv/
+
+# Local SQLite Database & Chroma Vectors
+.data/
+*.db
+*.sqlite
+*.sqlite3
+
+# Python Bytecode & Test Caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# OS & Editor Files
+.DS_Store
+.vscode/
+.idea/
